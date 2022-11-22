@@ -1,3 +1,5 @@
+import { useContext } from "react"
+import { ContextApi } from "../ContextApi"
 import Navbar from "react-bootstrap/Navbar"
 import community from "../assets/imgs/logonav.png"
 import "../assets/css/navbar.css"
@@ -5,6 +7,9 @@ import "../assets/css/navbar.css"
 // import Nav from "react-bootstrap/Nav"
 
 function Navb() {
+  const { auth } = useContext(ContextApi)
+  console.log("🚀 ~ file: Navbar.js ~ line 11 ~ Navb ~ auth", auth)
+  
   return (
     <>
       <Navbar bg="primary" variant="dark">
@@ -19,11 +24,12 @@ function Navb() {
             Community Market
           </Navbar.Brand>
           <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
+          {!auth.isAuth? (<Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
               <a href="login">Iniciar Sesión</a>
             </Navbar.Text>
-          </Navbar.Collapse>
+          </Navbar.Collapse>):""}
+          
         </div>
       </Navbar>
     </>
