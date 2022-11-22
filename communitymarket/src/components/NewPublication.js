@@ -1,27 +1,27 @@
-import { Container, FormGroup } from "react-bootstrap"
+import { Container } from "react-bootstrap"
 import Form from "react-bootstrap/Form"
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid"
 import Button from "react-bootstrap/Button"
 import InputGroup from "react-bootstrap/InputGroup"
-import DragDrop from "./DragDrop"
 import "../assets/css/newPublication.css"
 import { ContextApi } from "../ContextApi"
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+
+import FileBase64 from "react-file-base64"
 
 function NewPublication() {
-  const id = nanoid();
+  const id = nanoid()
+  const { setPublicaciones, usuario, publicaciones, setPub } =
+    useContext(ContextApi)
   const [datos, setDatos] = useState({
     foto: "",
     titulo: "",
     desc: "",
     precio: 0,
-    id: id ,
+    id: id,
     liked: false,
+    email: usuario.email,
   })
-  const { setPublicaciones, auth, setUsuario, publicaciones } =
-    useContext(ContextApi)
-  const navigate = useNavigate()
   const handleInputChange = (event) => {
     // console.log(event.target.name)
     // console.log(event.target.value)
@@ -33,23 +33,26 @@ function NewPublication() {
   const enviarDatos = (event) => {
     event.preventDefault()
     console.log("enviando datos..." + datos.titulo + " " + datos.precio)
-    let id = nanoid(); 
+    let id = nanoid()
     setDatos({
       ...datos,
-      ['id']: id,
+      "id": id,
     })
-    
-
+ 
     setPublicaciones([...publicaciones, datos])
+    setPub([...publicaciones, datos])
   }
+  const getFiles = (files) => {
+    setDatos({
+      ...datos,
+      "foto": files[0].base64,
+    })
+  }
+
   return (
     <Container className="publication">
       <Form onSubmit={enviarDatos}>
-        <FormGroup>
-          {" "}
-          <DragDrop />
-        </FormGroup>
-
+        <FileBase64 multiple={true} onDone={getFiles} />
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Titulo publicación</Form.Label>
           <Form.Control

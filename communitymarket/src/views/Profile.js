@@ -6,9 +6,8 @@ import { ContextApi } from "../ContextApi"
 import { useContext } from "react"
 
 export default function Profile() {
-  const { auth,usuario } = useContext(ContextApi)
-  console.log("🚀 ~ file: Profile.js ~ line 10 ~ Profile ~ auth", auth,usuario)
-
+  const { auth } = useContext(ContextApi)
+  
   return (
     <>
     {auth.isAuth? <TabNav />:'No tiene Session'}

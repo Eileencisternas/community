@@ -11,7 +11,7 @@ import {
 import "../assets/css/profileCard.css"
 
 export default function ProfileCard({datos}) {
-console.log("🚀 ~ file: ProfileCard.js ~ line 14 ~ ProfileCard ~ datos", datos)
+
 
   return (
     <MDBCard>

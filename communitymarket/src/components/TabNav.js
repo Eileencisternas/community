@@ -10,8 +10,8 @@ import { ContextApi } from "../ContextApi"
 import { useContext} from "react"
 
 function UncontrolledExample() {
-  const {  usuario } = useContext(ContextApi)
-  console.log("🚀 ~ file: TabNav.js ~ line 14 ~ UncontrolledExample ~ usuario", usuario)
+  const {  usuario, auth } = useContext(ContextApi)
+const {isAuth} = auth;
   return (
     <Tabs
       defaultActiveKey="profile"
@@ -30,12 +30,13 @@ function UncontrolledExample() {
       <Galeria/>
       </Tab>
       <Tab eventKey="Mis Publicaciones" title="Mis Publicaciones">
-        <MisPublicaciones/>
+        {isAuth? <MisPublicaciones/>:''}
       </Tab>
       <Tab eventKey="Nueva Publicación" title="Nueva Publicación">
-        <NewPublication/>
+      {isAuth? <NewPublication/>:''}
       </Tab>
-    </Tabs>
+    </Tabs> 
+
   );
 }
 
