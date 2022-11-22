@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button"
 import "../assets/css/session.css"
 import { ContextApi } from "../ContextApi"
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export default function Session(props) {
   const [datos, setDatos] = useState({
@@ -32,6 +32,7 @@ export default function Session(props) {
       setUsuario(usu[0])
       navigate("/profile")
     } else {
+      alert('No Existe el usuario')
       auth.setisAuth(false)
     }
   }
@@ -48,7 +49,7 @@ export default function Session(props) {
               placeholder="Enter email"
               onChange={handleInputChange}
               name="email"
-              value="a@a.cl"
+              required
             />
           </div>
           <div className="form-group mt-3">
@@ -59,7 +60,7 @@ export default function Session(props) {
               placeholder="Enter password"
               onChange={handleInputChange}
               name="clave"
-              value="1"
+              required
             />
           </div>
           <div className="d-grid gap-2 mt-3">
@@ -68,9 +69,7 @@ export default function Session(props) {
             </Button>
           </div>
           <p className="forgot-password text-right mt-2">¿Tienes cuenta?</p>
-          <Button href="create" type="button" variant="warning">
-            Crear cuenta
-          </Button>
+          <Link to="/create">Crear Cuenta</Link>
         </div>
       </form>
     </div>

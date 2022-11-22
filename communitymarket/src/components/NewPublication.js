@@ -13,15 +13,16 @@ function NewPublication() {
   const id = nanoid()
   const { setPublicaciones, usuario, publicaciones, setPub } =
     useContext(ContextApi)
-  const [datos, setDatos] = useState({
-    foto: "",
-    titulo: "",
-    desc: "",
-    precio: 0,
-    id: id,
-    liked: false,
-    email: usuario.email,
-  })
+    const initValues={
+      foto: "",
+      titulo: "",
+      desc: "",
+      precio: 0,
+      id: id,
+      liked: false,
+      email: usuario.email,
+    }
+  const [datos, setDatos] = useState(initValues)
   const handleInputChange = (event) => {
     // console.log(event.target.name)
     // console.log(event.target.value)
@@ -41,18 +42,19 @@ function NewPublication() {
  
     setPublicaciones([...publicaciones, datos])
     setPub([...publicaciones, datos])
+    setDatos(initValues)
   }
   const getFiles = (files) => {
     setDatos({
       ...datos,
-      "foto": files[0].base64,
+      "foto": files.base64,
     })
   }
 
   return (
     <Container className="publication">
       <Form onSubmit={enviarDatos}>
-        <FileBase64 multiple={true} onDone={getFiles} />
+        <FileBase64 multiple={false} onDone={getFiles} required />
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Titulo publicación</Form.Label>
           <Form.Control
@@ -60,6 +62,8 @@ function NewPublication() {
             placeholder="Titulo"
             onChange={handleInputChange}
             name="titulo"
+            value={datos.titulo}
+            required
           />
         </Form.Group>
         <Form.Group className="mb-4" controlId="exampleForm.ControlTextarea1">
@@ -70,17 +74,22 @@ function NewPublication() {
             placeholder="Descripción"
             onChange={handleInputChange}
             name="desc"
+            value={datos.desc}
+            required
           />
         </Form.Group>
         <InputGroup className="mb-4">
           <InputGroup.Text>$</InputGroup.Text>
           <Form.Control
+           type="number"
             aria-label="Valor producto"
             onChange={handleInputChange}
             name="precio"
+            value={datos.precio}
+            required
           />
         </InputGroup>
-        <Form.Check type="switch" id="custom-switch" label="Click switch" />
+       
         <Button variant="primary" type="submit">
           Publicar
         </Button>

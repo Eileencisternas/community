@@ -4,11 +4,13 @@ import Navbar from "react-bootstrap/Navbar"
 import community from "../assets/imgs/logonav.png"
 import "../assets/css/navbar.css"
 import { Form } from "react-bootstrap"
+import { BoxArrowLeft } from 'react-bootstrap-icons';
+import { Link } from "react-router-dom"
 
 // import Nav from "react-bootstrap/Nav"
 
 function Navb() {
-  const { auth, publicaciones, setPub } = useContext(ContextApi)
+  const { auth, publicaciones, setPub ,setUsuario} = useContext(ContextApi)
   
   //se crea funcion filtrar
   const searchPub = (searchInput) => {
@@ -23,6 +25,11 @@ function Navb() {
     } else {
       setPub(publicaciones)
     }
+  }
+  const logout = () => {
+    setUsuario([])
+    auth.setisAuth(false)
+
   }
   return (
     <>
@@ -41,7 +48,10 @@ function Navb() {
           {!auth.isAuth ? (
             <Navbar.Collapse className="justify-content-end">
               <Navbar.Text>
-                <a href="login">Iniciar Sesión</a>
+                <Link to ="/login">
+                  Iniciar Sesión
+                </Link>
+               
               </Navbar.Text>
             </Navbar.Collapse>
           ) : (
@@ -56,6 +66,18 @@ function Navb() {
                     onChange={(e) => searchPub(e.target.value)}
                   />
                 </Form>
+              </Navbar>
+              <Navbar>
+              <a className="App-link"
+        onClick={logout}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+ <BoxArrowLeft color="red" size={56} />
+
+      </a>
+              
+              
               </Navbar>
             </Navbar.Collapse>
           )}
