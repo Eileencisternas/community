@@ -1,0 +1,23 @@
+.contImg {
+  margin: 8%;
+  border: 1px solid blue;
+  border-radius: 25px;
+}
+h1 {
+  color: #003758;
+}
+h3 {
+  color: #003758;
+}
+.bodyCardText {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5%;
+  align-items: flex-start;
+  justify-content: flex-end;
+  align-content: center;
+  flex-wrap: wrap;
+}
+.contentTitle {
+  margin-bottom: 25%;
+}

@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  font-family: "Maitree", serif;
+  text-align: center;
+  color: #43a047;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+.logoHome {
+  width: auto;
+}
+
+.content {
+  display: flex;
+  margin-left: 2%;
+  width: 95%;
+  position: sticky;
+}
+.shadow {
+  color: #f2f1f1;
+  background-color: #003758;
+}
+#Home {
+  margin-top: 10%;
+}

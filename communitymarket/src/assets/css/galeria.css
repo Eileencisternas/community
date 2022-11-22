@@ -1,0 +1,69 @@
+.galeria {
+  display: grid;
+  gap: 10px;
+}
+
+.grid-columns-5 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.grid-columns-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.galeria .foto {
+  cursor: pointer;
+  width: 300px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: left;
+  text-shadow: 0px 0px 15px black;
+  position: relative;
+  background-color: darkcyan;
+  border-radius: 8px;
+}
+
+.galeria .foto:hover {
+  box-shadow: 0px 0px 2px 1px black;
+}
+
+.galeria .foto svg {
+  align-self: flex-end;
+  /* background-color: black; */
+  color: red;
+  position: absolute;
+  top: 1em;
+  padding-right: 10px;
+}
+
+.galeria h3 {
+  padding: 0 20px;
+  color: #f2f1f1;
+}
+.galeria h4 {
+  padding: 0 20px;
+  color: #f2f1f1;
+}
+
+.p-3 {
+  padding: 30px;
+}
+
+img {
+  width: 100%;
+  height: 200px;
+}
+.tituloDesc {
+  width: 100%;
+  white-space: wrap;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  align-items: flex-start;
+}
